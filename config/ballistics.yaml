@@ -1,0 +1,6 @@
+anti_uav_system:
+  ros__parameters:
+    muzzle_velocity_ms: 1000.0
+    max_range_m: 3000.0
+    min_track_confidence: 0.6
+    turret_pos: [0.0, 0.0, 0.0]   # x, y, z metres (world frame)

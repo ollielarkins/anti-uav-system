@@ -287,13 +287,14 @@ python solver/tracker.py
 | Ballistics solver | `solver/ballistics.py` | ✅ Done |
 | Kalman filter | `solver/kalman.py` | ✅ Done |
 | Tracker | `solver/tracker.py` | ✅ Done |
+| ROS2 package scaffold | `package.xml`, `setup.py`, `config/` | ✅ Done |
+| Launch file | `launch/main.launch.py` | ✅ Done |
 | Detection node | `anti_uav_system/nodes/yolo_node.py` | ⬜ Next |
-| Ballistics node | `anti_uav_system/nodes/ballistics_node.py` | ⬜ Pending |
 | Tracker node | `anti_uav_system/nodes/tracker_node.py` | ⬜ Pending |
+| Ballistics node | `anti_uav_system/nodes/ballistics_node.py` | ⬜ Pending |
 | Gazebo world | `sim/worlds/airspace.world` | ⬜ Pending |
 | Turret model | `sim/models/turret/` | ⬜ Pending |
 | HUD frontend | `hud/` | ⬜ Pending |
-| Launch files | `anti_uav_system/launch/` | ⬜ Pending |
 
 ## HUD Reference Notes
 From `dashboard inspo.webp`:

@@ -1,0 +1,7 @@
+anti_uav_system:
+  ros__parameters:
+    max_association_dist_m: 100.0
+    confirm_hits: 3
+    max_coast_frames: 5
+    sigma_a: 5.0    # process noise: drone max accel m/s²
+    sigma_r: 5.0    # measurement noise: position uncertainty metres

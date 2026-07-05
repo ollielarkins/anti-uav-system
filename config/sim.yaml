@@ -1,0 +1,13 @@
+anti_uav_system:
+  ros__parameters:
+    swarm:
+      count: 8
+      spawn_range_m: [500, 2000]
+      max_speed_ms: 30
+      max_accel_ms2: 5
+    camera:
+      width: 640
+      height: 480
+      fov_deg: 60
+      fps: 30
+      topic: /camera/image_raw

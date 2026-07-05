@@ -66,13 +66,20 @@ hud/                    # frontend (React or PyQt5)
 - [x] `solver/ballistics.py` — intercept geometry + threat scoring → `docs/ballistics.md`
 - [x] `solver/kalman.py` — CV Kalman filter per track → `docs/kalman.md`
 - [x] `solver/tracker.py` — Hungarian association + track lifecycle → `docs/tracker.md`
+- [x] ROS2 package scaffold — `package.xml`, `setup.py`, `config/*.yaml`, `launch/main.launch.py`
+- [x] `docs/setup.md` — WSL2 + ROS2 Humble + Gazebo install guide
+- [x] `docs/hud-reference-analysis.md` — full decomposition of reference dashboard
+- [x] `docs/hud-spec.md` — HUD design spec for this system
 
 ## What's next
-- [ ] ROS2 package scaffolding (`anti_uav_system/`)
-- [ ] Gazebo world + turret model (`sim/`)
-- [ ] YOLOv8 detection node
-- [ ] Thin ROS wrapper nodes for tracker + ballistics
-- [ ] HUD frontend skeleton
+- [ ] Gazebo world + turret SDF model (`sim/`)
+- [ ] YOLOv8 detection node (`anti_uav_system/nodes/yolo_node.py`)
+- [ ] Tracker + ballistics ROS nodes
+- [ ] HUD frontend (React + Electron)
 
 ## solver/ is feature-complete (no ROS deps)
 Run `python -m solver.ballistics`, `python -m solver.kalman`, `python -m solver.tracker` to verify all passing.
+
+## ROS2 environment
+Runs in WSL2 (Ubuntu 22.04). See `docs/setup.md` for install steps.
+HUD runs natively on Windows, connects to rosbridge at `ws://localhost:9090`.
