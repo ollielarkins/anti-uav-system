@@ -224,6 +224,11 @@ pip3 install torch torchvision --index-url https://download.pytorch.org/whl/rocm
 python3 -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"
 # True
 # AMD Radeon RX ...
+
+# RX 6600 (Navi 23 / gfx1032) fix — if the above prints False, add this:
+echo 'export HSA_OVERRIDE_GFX_VERSION=10.3.0' >> ~/.bashrc
+source ~/.bashrc
+# Then re-run the verify above
 ```
 
 ### If ROCm install fails
