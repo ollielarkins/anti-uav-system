@@ -186,26 +186,53 @@ ros2 pkg list | grep anti_uav
 
 ---
 
-## Step 9 — GPU Setup (NVIDIA, optional but recommended)
+## Step 9 — GPU Setup (AMD ROCm)
 
-Required for YOLOv8 to run at 30fps. Skip this if CPU-only is acceptable.
+Required for YOLOv8 to run at 30fps. ROCm is AMD's CUDA equivalent.
 
-On **Windows** (not WSL), install the [NVIDIA CUDA WSL2 driver](https://developer.nvidia.com/cuda/wsl).
-Do **not** install CUDA inside WSL — the Windows driver exposes CUDA automatically.
+**Supported GPUs:** RX 6600 / 6700 / 6800 / 6900 XT, RX 7600 / 7700 / 7800 / 7900 XT/XTX, W6800, W7900.
+Older cards (RX 5000 series, Vega) have partial support — check [ROCm supported GPUs](https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html) if unsure.
+If your GPU isn't listed, skip this step and run CPU-only (~10–15fps with YOLOv8-nano, borderline for 30fps).
 
-Inside WSL2:
+### On Windows (not WSL)
+
+Install **AMD Software: Adrenalin Edition** — version 23.40.27.01 or later.
+Download from [amd.com/en/support](https://www.amd.com/en/support).
+This driver exposes ROCm to WSL2 automatically — do **not** install ROCm drivers on Windows itself.
+
+### Inside WSL2
+
 ```bash
-# Check GPU is visible
-nvidia-smi
-# Should show your GPU
+# Add ROCm apt repo
+wget https://repo.radeon.com/amdgpu-install/6.1.1/ubuntu/jammy/amdgpu-install_6.1.60101-1_all.deb
+sudo apt install -y ./amdgpu-install_6.1.60101-1_all.deb
+sudo amdgpu-install -y --usecase=rocm --no-dkms
+# --no-dkms skips kernel driver install (WSL2 uses the Windows driver)
 
-# Install PyTorch with CUDA
-pip3 install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+# Add your user to the render group
+sudo usermod -aG render,video $USER
+newgrp render
 
-# Verify
-python3 -c "import torch; print(torch.cuda.is_available())"
+# Verify GPU is visible
+rocm-smi
+# Should list your GPU with utilisation stats
+
+# Install PyTorch with ROCm 6.1
+pip3 install torch torchvision --index-url https://download.pytorch.org/whl/rocm6.1
+
+# Verify (ROCm exposes itself as CUDA to PyTorch via HIP)
+python3 -c "import torch; print(torch.cuda.is_available()); print(torch.cuda.get_device_name(0))"
 # True
+# AMD Radeon RX ...
 ```
+
+### If ROCm install fails
+
+Run YOLOv8-nano on CPU — it's tight but workable for the MVP:
+```bash
+pip3 install torch torchvision  # CPU-only, no index URL needed
+```
+At 640×480 YOLOv8-nano averages ~12fps on a modern CPU. The tracker and ballistics solver add <2ms on top. The system will run below the 30fps target but all logic is correct — swap in GPU later.
 
 ---
 
