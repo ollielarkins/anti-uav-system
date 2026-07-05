@@ -63,11 +63,16 @@ hud/                    # frontend (React or PyQt5)
 
 ## What's built
 - [x] README
-- [x] `solver/ballistics.py` — intercept geometry + threat scoring
+- [x] `solver/ballistics.py` — intercept geometry + threat scoring → `docs/ballistics.md`
+- [x] `solver/kalman.py` — CV Kalman filter per track → `docs/kalman.md`
+- [x] `solver/tracker.py` — Hungarian association + track lifecycle → `docs/tracker.md`
 
 ## What's next
-- [ ] `solver/kalman.py` — per-track state estimator
-- [ ] `solver/tracker.py` — Hungarian association + track lifecycle
-- [ ] Gazebo world + turret model
-- [ ] YOLOv8 ROS node
+- [ ] ROS2 package scaffolding (`anti_uav_system/`)
+- [ ] Gazebo world + turret model (`sim/`)
+- [ ] YOLOv8 detection node
+- [ ] Thin ROS wrapper nodes for tracker + ballistics
 - [ ] HUD frontend skeleton
+
+## solver/ is feature-complete (no ROS deps)
+Run `python -m solver.ballistics`, `python -m solver.kalman`, `python -m solver.tracker` to verify all passing.

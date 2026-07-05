@@ -285,11 +285,21 @@ python solver/tracker.py
 | Module | File | Status |
 |--------|------|--------|
 | Ballistics solver | `solver/ballistics.py` | ✅ Done |
-| Kalman filter | `solver/kalman.py` | ⬜ Next |
-| Tracker | `solver/tracker.py` | ⬜ Pending |
-| Detection node | `anti_uav_system/nodes/yolo_node.py` | ⬜ Pending |
+| Kalman filter | `solver/kalman.py` | ✅ Done |
+| Tracker | `solver/tracker.py` | ✅ Done |
+| Detection node | `anti_uav_system/nodes/yolo_node.py` | ⬜ Next |
 | Ballistics node | `anti_uav_system/nodes/ballistics_node.py` | ⬜ Pending |
+| Tracker node | `anti_uav_system/nodes/tracker_node.py` | ⬜ Pending |
 | Gazebo world | `sim/worlds/airspace.world` | ⬜ Pending |
 | Turret model | `sim/models/turret/` | ⬜ Pending |
 | HUD frontend | `hud/` | ⬜ Pending |
 | Launch files | `anti_uav_system/launch/` | ⬜ Pending |
+
+## HUD Reference Notes
+From `dashboard inspo.webp`:
+- Satellite map base layer on radar (not just rings)
+- Green sector cone showing camera/weapon FoV
+- Named track icons (not just dots) — colour-coded red=locked, blue=tracking
+- Bottom-right lock panel: speed, alt, distance, bearing + weapon APPROVE buttons
+- Telemetry table columns: ID, type, time detected, sensor, coords, distance, heading, actions
+- Action buttons per row: LOCK ON / RELEASE
