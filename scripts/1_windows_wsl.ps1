@@ -16,8 +16,9 @@ Write-Host "`n[1/3] Enabling WSL2..." -ForegroundColor Yellow
 wsl --install --no-distribution
 wsl --set-default-version 2
 
-# Install Ubuntu 22.04
-Write-Host "`n[2/3] Installing Ubuntu 22.04..." -ForegroundColor Yellow
+# Install Ubuntu 22.04 (required — ROS2 Humble and Gazebo don't support newer Ubuntu)
+Write-Host "`n[2/3] Installing Ubuntu 22.04 (Jammy)..." -ForegroundColor Yellow
+Write-Host "NOTE: If you already have a different Ubuntu version, this installs 22.04 alongside it." -ForegroundColor Gray
 wsl --install -d Ubuntu-22.04
 
 # Install AMD Software reminder

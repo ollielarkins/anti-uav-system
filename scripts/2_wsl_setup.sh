@@ -8,6 +8,18 @@
 
 set -e  # exit on any error
 
+# Guard: must run on Ubuntu 22.04 (Jammy) — ROS2 Humble and Gazebo require it
+UBUNTU_VERSION=$(lsb_release -rs 2>/dev/null || echo "unknown")
+if [[ "$UBUNTU_VERSION" != "22.04" ]]; then
+    echo -e "\033[0;31mERROR: This script requires Ubuntu 22.04 (Jammy).\033[0m"
+    echo "You are running Ubuntu $UBUNTU_VERSION."
+    echo ""
+    echo "Fix: install Ubuntu 22.04 as a WSL2 distro then re-run:"
+    echo "  PowerShell: wsl --install -d Ubuntu-22.04"
+    echo "  Then open 'Ubuntu 22.04' from Start and run this script."
+    exit 1
+fi
+
 # ── colours ──────────────────────────────────────────────────────────────────
 GREEN='\033[0;32m'; YELLOW='\033[1;33m'; CYAN='\033[0;36m'; RED='\033[0;31m'; NC='\033[0m'
 step()  { echo -e "\n${CYAN}[$(date +%H:%M:%S)] $1${NC}"; }
